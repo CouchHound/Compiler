@@ -1,0 +1,71 @@
+.data
+	string1: .asciiz "\n"
+.text
+main:
+	li $s2, 2
+	li $s3, 3
+	move $s1, $s3
+	jal ONE
+	move $s4, $a0
+	b _L3
+ONE:
+	b _L1
+_L1:
+	bge $s1, 10, Main1
+	move $t1, $s1
+	addi $t2, $t1, 10
+	move $s1, $t2
+	b _L2
+_L2:
+	b _L1
+Main1:
+	move $a0, $s1
+	jr $ra
+_L3:
+	bge $s2, 20, Main2
+	move $t1, $s2
+	move $t2, $s3
+	addu $t3, $t1, $t2
+	move $s2, $t3
+	beq $s3, 3, If1
+	b _L4
+_L4:
+	b _L3
+Main2:
+	move $a0, $s4
+	li $v0 1
+	syscall
+
+	la $a0, string1
+	li $v0 4
+	syscall
+
+	move $a0, $s3
+	li $v0 1
+	syscall
+
+	la $a0, string1
+	li $v0 4
+	syscall
+
+	move $a0, $s2
+	li $v0 1
+	syscall
+
+	la $a0, string1
+	li $v0 4
+	syscall
+
+	j END
+If1:
+	b _L5
+	b _L4
+_L5:
+	bge $s3, 10, _L4
+	move $t1, $s3
+	addi $t2, $t1, 2
+	move $s3, $t2
+	b _L6
+_L6:
+	b _L5
+END:

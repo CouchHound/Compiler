@@ -1,0 +1,25 @@
+var float x, c;
+var int y, z, p;
+
+func ONE(int b){
+    while (b < 10){
+        b = b + 10;
+    }
+    return b
+}
+
+y = 2;
+p = 3;
+z = ONE(p);
+while(y < 20){
+    y = y + p;
+    if(p == 3) then {
+        while(p<10){
+            p = p+2;
+        }
+    }
+}
+print(z);
+print(p);
+print(y);
+
